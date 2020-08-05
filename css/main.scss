@@ -1,0 +1,94 @@
+$dark: #343a40;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+body {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    min-width: 400px;
+    background-size: cover;
+    .bg-dark {
+        color: #ffffff;
+    }
+}
+
+.pointer:hover {
+    cursor: pointer;
+}
+.optionssymbol:hover {
+    filter: sepia(1);
+}
+header,
+footer {
+    padding: 5px 10px;
+}
+.content {
+    word-wrap: normal;
+    font-size: 12px;
+    .tabs {
+        padding: 5px;
+        .tabitems {
+            display: flex;
+            background-color: $dark;
+            .tabitem {
+                padding: 5px 10px;
+                color: #ffffff;
+                border: 1px solid rgba($color: $dark, $alpha: 0.25);
+                border-right: 0;
+                &:hover {
+                    cursor: pointer;
+                }
+                &.active {
+                    background-color: rgba($color: invert($color: $dark), $alpha: 0.25);
+                }
+            }
+            .tabitem:last-child {
+                border-right: 1px solid rgba($color: $dark, $alpha: 0.25);
+            }
+        }
+        .tabcontents {
+            .tabcontent {
+                max-height: 300px;
+                overflow-y: auto;
+                display: none;
+                padding: 5px 0;
+            }
+        }
+    }
+    .package {
+        padding: 5px 10px;
+        display: flex;
+        position: relative;
+        p{
+            margin: 0;
+        }
+        img {
+            max-height: 1rem;
+            margin-right: 5px;
+        }
+    }
+    input {
+        font-size: 12px;
+    }
+    .loading {
+        margin: 20px auto;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        border: 1px solid #ffffff;
+        border-left-color: transparent;
+        animation: loading 1s infinite linear;
+    }
+    .dns-point {
+        padding: 5px 10px;
+        background-color: $dark;
+        color: #ffffff;
+        margin-bottom: 1em;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+@keyframes loading {
+    100% {
+        transform: rotate(360deg);
+    }
+}

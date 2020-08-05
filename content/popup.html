@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="../css/bootstrap.min.css" rel='stylesheet' />
+    <link href="../css/font-awesome.css" rel='stylesheet' />
+    <link href="../css/main.css" rel='stylesheet' />
+</head>
+
+<body>
+    <header class="d-flex align-items-center border-bottom m-0 bg-dark">
+        <img style="max-height: 2em" class="mr-2" src="../images/logo_size.png">
+        <p class="lead m-0">EX<small style="font-size: 12px;">|tension</small></p>
+    </header>
+    <div class="content">
+        <div class="tabs">
+            <div class="tabitems">
+                <div class="tabitem active" data-content="#server">
+                    <a class="tablink">
+                        Server Info
+                    </a>
+                </div>
+                <div id="dns-tab" class="tabitem" data-content="#dns">
+                    <a class="tablink">
+                        DNS Info
+                    </a>
+                </div>
+                <div id="password-tab" class="tabitem" data-content="#passwordContent">
+                    <a class="tablink">
+                        Password
+                    </a>
+                </div>
+            </div>
+            <div class="tabcontents">
+                <div id="server" class="tabcontent" style="display: block;">
+                    <div class="form-group" id="host-group">
+                        <label for="hostname">Host</label>
+                        <input type="text" name="hostname" id="hostname" class="form-control form-control-sm">
+                    </div>
+                    <div class="form-group" id="ip-group">
+                        <label for="ip">IP</label>
+                        <input type="text" name="ip" id="ip" class="form-control form-control-sm">
+                    </div>
+                    <div id="serverinfos">
+                        <b>Server Components</b>
+                    </div>
+                </div>
+                <div id="dns" class="tabcontent">
+                    <div id="dns-group">
+
+                    </div>
+                </div>
+                <div id="passwordContent" class="tabcontent">
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="text" name="password" autocomplete="off" id="password" class="form-control form-control-sm">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer d-flex justify-content-between align-items-center bg-dark">
+        <img src="../images/logo_size.png" alt="Logo" style="max-height:2em;">
+        <div class="pointer optionssymbol" id="optionspage" title="Options">
+            <img height="20px" src="../images/2849830-gear-interface-multimedia-options-setting-settings_107986.svg" />
+        </div>
+    </footer>
+    <script src="../js/jquery-slim.min.js"></script>
+    <script src="../js/prettyprint.js"></script>
+    <script src="../js/classes/Tabs.js"></script>
+    <script src="../js/tabs.js"></script>
+    <script src="../js/popup.js"></script>
+</body>
+
+</html>

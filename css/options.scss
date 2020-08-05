@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+body {
+    min-height: 100vh;
+    min-width: 100vw;
+    font-family: "Montserrat", sans-serif;
+    overflow: hidden;
+    header {
+        padding: 10px 20px;
+        width: 100vw;
+        color: #ffffff;
+        position: relative;
+        height: 60px;
+        img {
+            padding-right: 10px;
+        }
+    }
+    section {
+        max-height: calc(100vh - 180px);
+        min-height: calc(100vh - 180px);
+        overflow-y: auto;
+    }
+    footer {
+        padding: 10px 20px;
+        width: 100vw;
+        color: #ffffff;
+        position: relative;
+        height: 120px;
+    }
+}
+.corner-top-in {
+    padding-left: 10px;
+    animation: corner-top-in 0.75s ease-in-out;
+}
+.corner-bottom-in {
+    padding-left: 10px;
+    animation: corner-bottom-in 0.75s ease-in-out;
+}
+@keyframes corner-top-in {
+    0% {
+        position: relative;
+        top: -60px;
+        color: transparent;
+        padding-left: 0px;
+    }
+    100% {
+        position: relative;
+        top: 0px;
+        opacity: #ffffff;
+        padding-left: 10px;
+    }
+}
+
+@keyframes corner-bottom-in {
+    0% {
+        position: relative;
+        bottom: -120px;
+        color: transparent;
+    }
+    100% {
+        position: relative;
+        bottom: 0px;
+        opacity: #ffffff;
+    }
+}
