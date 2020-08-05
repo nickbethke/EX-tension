@@ -67,11 +67,25 @@ jQuery(function ($) {
                     if (server.includes('Apache')) {
                         $('#serverinfos').append(serverInfo('Apache.svg', "Apache"));
                     }
+                    else if (server.includes('nginx')) {
+                        $('#serverinfos').append(serverInfo('nginx.svg', "nginx"));
+                    }
+                    else if (server.includes('gws')) {
+                        $('#serverinfos').append(serverInfo('google.png', "Google Web Server"));
+                    }
+                    else if (server.includes('YouTube Frontend Proxy')) {
+                        $('#serverinfos').append(serverInfo('youtube.png', "YouTube Frontend Proxy"));
+                    }
+                    else if (server.includes('Microsoft')) {
+                        $('#serverinfos').append(serverInfo('microsoft.svg', server));
+                    }
                     else if (server.includes('cloudflare')) {
                         $('#serverinfos').append(serverInfo('cloudflare.svg', "Cloudflare"));
                     }
                     else if (server.includes('Debian')) {
                         $('#serverinfos').append(serverInfo('debian.svg', "Debian"));
+                    } else if (server.includes('AppleHttpServer')) {
+                        $('#serverinfos').append(serverInfo('AppleServer.svg', "Apple HTTP Server"));
                     } else {
                         $('#serverinfos').append("<div class='package'><p>" + server + "</p></div>");
                     }
