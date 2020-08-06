@@ -60,8 +60,6 @@ footer {
 }
 
 .content .tabs .tabcontents .tabcontent {
-  max-height: 300px;
-  overflow-y: auto;
   display: none;
   padding: 5px 0;
 }
@@ -76,11 +74,26 @@ footer {
 
 .content .package p {
   margin: 0;
+  line-height: 1.25rem;
+  font-size: 0.75rem;
 }
 
 .content .package img {
-  max-height: 1rem;
+  max-height: 1.25rem;
   margin-right: 5px;
+}
+
+.content .package .version {
+  font-size: 10px;
+  background: #aaa;
+  margin: 0;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-left: 0.5rem;
+  padding: 0 3px;
+  color: #fff;
+  font-weight: 500;
 }
 
 .content input {

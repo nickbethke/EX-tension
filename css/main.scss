@@ -46,8 +46,6 @@ footer {
         }
         .tabcontents {
             .tabcontent {
-                max-height: 300px;
-                overflow-y: auto;
                 display: none;
                 padding: 5px 0;
             }
@@ -57,12 +55,24 @@ footer {
         padding: 5px 10px;
         display: flex;
         position: relative;
-        p{
+        p {
             margin: 0;
+            line-height: 1.25rem;
+            font-size: 0.75rem;
         }
         img {
-            max-height: 1rem;
+            max-height: 1.25rem;
             margin-right: 5px;
+        }
+        .version {
+            font-size: 10px;
+            background: #aaa;
+            margin: 0;
+            height: fit-content;
+            margin-left: 0.5rem;
+            padding: 0 3px;
+            color: #fff;
+            font-weight: 500;
         }
     }
     input {

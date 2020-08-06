@@ -45,7 +45,6 @@ jQuery(function ($) {
                         getPassword(password, function (r) {
                             r = JSON.parse(r)
                             if (!r.error) {
-                                console.log(r);
                                 $('.password-container').remove();
                                 var cont = $('<div class="password-container">');
                                 cont.append('<hr/>');
@@ -60,55 +59,74 @@ jQuery(function ($) {
                     $('#password-content').hide();
                 }
                 getServerInfo(url, function (r) {
-                    r = JSON.parse(r);
-                    for (var prop in r) {
-                        if (r[prop].Server || r[prop].server) {
-                            var server = r[prop].Server ? r[prop].Server : r[prop].server;
-                        }
-                        if (server.includes('Apache')) {
-                            $('#serverinfos').append(serverInfo('Apache.svg', "Apache"));
-                        }
-                        else if (server.includes('nginx')) {
-                            $('#serverinfos').append(serverInfo('nginx.svg', "nginx"));
-                        }
-                        else if (server.includes('gws')) {
-                            $('#serverinfos').append(serverInfo('google.png', "Google Web Server"));
-                        }
-                        else if (server.includes('YouTube Frontend Proxy')) {
-                            $('#serverinfos').append(serverInfo('youtube.png', "YouTube Frontend Proxy"));
-                        }
-                        else if (server.includes('Microsoft')) {
-                            $('#serverinfos').append(serverInfo('microsoft.svg', server));
-                        }
-                        else if (server.includes('GitHub')) {
-                            $('#serverinfos').append(serverInfo('github.svg', server));
-                        }
-                        else if (server.includes('cloudflare')) {
-                            $('#serverinfos').append(serverInfo('cloudflare.svg', "Cloudflare"));
-                        }
-                        else if (server.includes('Debian')) {
-                            $('#serverinfos').append(serverInfo('debian.svg', "Debian"));
-                        } else if (server.includes('AppleHttpServer')) {
-                            $('#serverinfos').append(serverInfo('AppleServer.svg', "Apple HTTP Server"));
+                    if (r.Server || r.server) {
+                        var server = r.Server ? r.Server : r.server;
+                    }
+                    serverContents = server.split(" ");
+                    serverContents.forEach(function (e) {
+                        var $s = e.split("/");
+                        console.log($s);
+                        if ($s.length === 2) {
+                            var name = $s[0];
+                            var version = $s[1];
                         } else {
-                            $('#serverinfos').append("<div class='package'><p>" + server + "</p></div>");
+                            var name = e;
+                            var version = false;
                         }
-                        if (r[prop]['X-Powered-By'] || r[prop]['x-powered-by']) {
-                            $('#serverinfos').append("<b>Powered By</b>");
-                            var powered = r[prop]['X-Powered-By'] ? r[prop]['X-Powered-By'] : r[prop]['x-powered-by'];
-                            if (powered.includes('Phusion Passenger')) {
-                                $('#serverinfos').append(serverInfo("Phusion\ Passenger.png", 'Phusion Passenger'));
-                            } else if (powered.includes('PHP') || powered.includes('php')) {
-                                $('#serverinfos').append(serverInfo("PHP.svg", powered));
-                            } else {
-                                $('#serverinfos').append("<div class='package'><p>" + powered + "</p></div>");
-                            }
+                        if (name.includes('CentOS')) {
+                            $('#serverinfos').append(serverInfo('centos.svg', "CentOS", version));
+                        }
+                        if (name.includes('PHP') || name === "PHP") {
+                            $('#serverinfos').append(serverInfo('PHP.svg', "PHP", version));
+                        }
+                        if (name.includes('Apache')) {
+                            $('#serverinfos').append(serverInfo('Apache.svg', "Apache", version));
+                        }
+                        if (name.includes('nginx')) {
+                            $('#serverinfos').append(serverInfo('nginx.svg', "nginx", version));
+                        }
+                        if (name.includes('Microsoft')) {
+                            $('#serverinfos').append(serverInfo('microsoft.svg', server, version));
+                        }
+                    })
 
+
+                    if (server.includes('gws')) {
+                        $('#serverinfos').append(serverInfo('google.png', "Google Web Server"));
+                    }
+                    else if (server.includes('YouTube Frontend Proxy')) {
+                        $('#serverinfos').append(serverInfo('youtube.png', "YouTube Frontend Proxy"));
+                    }
+                    else if (server.includes('GitHub')) {
+                        $('#serverinfos').append(serverInfo('github.svg', server));
+                    }
+                    else if (server.includes('cloudflare')) {
+                        $('#serverinfos').append(serverInfo('cloudflare.svg', "Cloudflare"));
+                    }
+                    else if (server.includes('Debian')) {
+                        $('#serverinfos').append(serverInfo('debian.svg', "Debian"));
+                    } else if (server.includes('AppleHttpServer')) {
+                        $('#serverinfos').append(serverInfo('AppleServer.svg', "Apple HTTP Server"));
+                    }
+                    if (r['X-Powered-By'] || r['x-powered-by']) {
+                        $('#serverinfos').append("<b>Powered By</b>");
+                        var powered = r['X-Powered-By'] ? r['X-Powered-By'] : r['x-powered-by'];
+                        if (powered.includes('Phusion Passenger')) {
+                            $('#serverinfos').append(serverInfo("Phusion\ Passenger.png", 'Phusion Passenger'));
+                        } else if (powered.includes('PHP') || powered.includes('php')) {
+                            $('#serverinfos').append(serverInfo("PHP.svg", powered));
+                        } else {
+                            $('#serverinfos').append("<div class='package'><p>" + powered + "</p></div>");
                         }
                     }
-
+                    if (r['via'] || r['Via']) {
+                        var via = r['via'] ? r['via'] : r['Via'];
+                        if(via.includes('varnish')){
+                            $('#serverinfos').append(serverInfo("varnish.svg", 'Varnish'));
+                        }
+                    }
                 })
-            }else{
+            } else {
                 var error = $('<div>');
                 error.addClass('p-2');
                 error.html('Not valid page.')
@@ -117,8 +135,13 @@ jQuery(function ($) {
         });
     });
 });
-function serverInfo(img, text) {
-    return "<div class='package'><img src='../images/packages/" + img + "'/><p>" + text + "<p></div>";
+function serverInfo(img, text, version) {
+    if (version) {
+        return "<div class='package'><img src='../images/packages/" + img + "'/><p>" + text + "<div class='version'>" + version + "</div><p></div>";
+    } else {
+        return "<div class='package'><img src='../images/packages/" + img + "'/><p>" + text + "<p></div>";
+    }
+
 }
 $('#optionspage').click(function () {
     window.open(chrome.extension.getURL('content/options.html'));
@@ -128,14 +151,26 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
     $('body').html('');
 });
 function getServerInfo(hostname, _callback) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            typeof _callback === "function" ? _callback(this.responseText) : "";
+    var geturl;
+    geturl = jQuery.ajax({
+        type: "GET",
+        url: hostname,
+        success: function () {
+            var header = geturl.getAllResponseHeaders();
+            var pre = $("<pre>" + header + "</pre>");
+            $('#serverinfos').append(pre);
+            pre.hide();
+            $('#serverinfos').dblclick(function () {
+                pre.toggle();
+            })
+            header = header.split('\n');
+            h = [];
+            header.forEach(function (e) {
+                h[e.split(':')[0]] = e.split(':')[1];
+            })
+            typeof _callback === "function" ? _callback(h) : "";
         }
-    };
-    xhttp.open("GET", "https://nick.s911.hqgmbh.eu/server.php?s=" + hostname, true);
-    xhttp.send();
+    });
 }
 function getInfo(hostname, _callback) {
     var xhttp = new XMLHttpRequest();
@@ -164,5 +199,6 @@ function validURL(str) {
         '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
         '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
         '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
+    if (str.includes('localhost')) return true;
     return !!pattern.test(str);
 }
