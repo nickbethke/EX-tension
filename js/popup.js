@@ -79,6 +79,9 @@ jQuery(function ($) {
                     else if (server.includes('Microsoft')) {
                         $('#serverinfos').append(serverInfo('microsoft.svg', server));
                     }
+                    else if (server.includes('GitHub')) {
+                        $('#serverinfos').append(serverInfo('github.svg', server));
+                    }
                     else if (server.includes('cloudflare')) {
                         $('#serverinfos').append(serverInfo('cloudflare.svg', "Cloudflare"));
                     }
