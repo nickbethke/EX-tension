@@ -76,6 +76,9 @@ jQuery(function ($) {
                         if (name.includes('CentOS')) {
                             $('#serverinfos').append(serverInfo('centos.svg', "CentOS", version));
                         }
+                        if (name.includes('Ubuntu')) {
+                            $('#serverinfos').append(serverInfo('Ubuntu.svg', "Ubuntu", version));
+                        }
                         if (name.includes('PHP') || name === "PHP") {
                             $('#serverinfos').append(serverInfo('PHP.svg', "PHP", version));
                         }
@@ -124,6 +127,9 @@ jQuery(function ($) {
                         if(via.includes('varnish')){
                             $('#serverinfos').append(serverInfo("varnish.svg", 'Varnish'));
                         }
+                        if(via.includes('vegur')){
+                            $('#serverinfos').append(serverInfo(false, 'vegur'));
+                        }
                     }
                 })
             } else {
@@ -136,6 +142,9 @@ jQuery(function ($) {
     });
 });
 function serverInfo(img, text, version) {
+    if(!img){
+        img = "placeholder.svg";
+    }
     if (version) {
         return "<div class='package'><img src='../images/packages/" + img + "'/><p>" + text + "<div class='version'>" + version + "</div><p></div>";
     } else {
