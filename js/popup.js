@@ -40,6 +40,7 @@ jQuery(function ($) {
                     }
                 });
                 if (options.psw_show) {
+                    $('#password').val(password_generator());
                     $('#password').keyup(function () {
                         var password = $(this).val();
                         getPassword(password, function (r) {
@@ -54,6 +55,7 @@ jQuery(function ($) {
                             }
                         })
                     })
+                    $('#password').keyup();
                 } else {
                     $('#password-tab').hide();
                     $('#password-content').hide();
@@ -124,10 +126,10 @@ jQuery(function ($) {
                     }
                     if (r['via'] || r['Via']) {
                         var via = r['via'] ? r['via'] : r['Via'];
-                        if(via.includes('varnish')){
+                        if (via.includes('varnish')) {
                             $('#serverinfos').append(serverInfo("varnish.svg", 'Varnish'));
                         }
-                        if(via.includes('vegur')){
+                        if (via.includes('vegur')) {
                             $('#serverinfos').append(serverInfo(false, 'vegur'));
                         }
                     }
@@ -142,7 +144,7 @@ jQuery(function ($) {
     });
 });
 function serverInfo(img, text, version) {
-    if(!img){
+    if (!img) {
         img = "placeholder.svg";
     }
     if (version) {
@@ -210,4 +212,26 @@ function validURL(str) {
         '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
     if (str.includes('localhost')) return true;
     return !!pattern.test(str);
+}
+function password_generator(len) {
+    var length = (len) ? (len) : (10);
+    var string = "abcdefghijklmnopqrstuvwxyz"; //to upper 
+    var numeric = '0123456789';
+    var punctuation = '!@#$%^&*()_+~`|}{[]\:;?><,./-=';
+    var password = "";
+    var character = "";
+    var crunch = true;
+    while (password.length < length) {
+        entity1 = Math.ceil(string.length * Math.random() * Math.random());
+        entity2 = Math.ceil(numeric.length * Math.random() * Math.random());
+        entity3 = Math.ceil(punctuation.length * Math.random() * Math.random());
+        hold = string.charAt(entity1);
+        hold = (password.length % 2 == 0) ? (hold.toUpperCase()) : (hold);
+        character += hold;
+        character += numeric.charAt(entity2);
+        character += punctuation.charAt(entity3);
+        password = character;
+    }
+    password = password.split('').sort(function () { return 0.5 - Math.random() }).join('');
+    return password.substr(0, len);
 }
