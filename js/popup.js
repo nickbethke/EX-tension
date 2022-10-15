@@ -108,6 +108,8 @@ jQuery(function ($) {
                         $('#serverinfos').append(serverInfo('debian.svg', "Debian"));
                     } else if (server.includes('AppleHttpServer')) {
                         $('#serverinfos').append(serverInfo('AppleServer.svg', "Apple HTTP Server"));
+                    } else if (server.includes('Google Frontend')) {
+                        $('#serverinfos').append(serverInfo('google.png', "Google Frontend"));
                     }
                     if (r['X-Powered-By'] || r['x-powered-by']) {
                         $('#serverinfos').append("<b>Powered By</b>");
