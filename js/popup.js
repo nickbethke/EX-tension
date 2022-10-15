@@ -98,17 +98,13 @@ jQuery(function ($) {
 
                     if (server.includes('gws')) {
                         $('#serverinfos').append(serverInfo('google.png', "Google Web Server"));
-                    }
-                    else if (server.includes('YouTube Frontend Proxy')) {
+                    } else if (server.includes('YouTube Frontend Proxy')) {
                         $('#serverinfos').append(serverInfo('youtube.png', "YouTube Frontend Proxy"));
-                    }
-                    else if (server.includes('GitHub')) {
+                    } else if (server.includes('GitHub')) {
                         $('#serverinfos').append(serverInfo('github.svg', server));
-                    }
-                    else if (server.includes('cloudflare')) {
+                    } else if (server.includes('cloudflare')) {
                         $('#serverinfos').append(serverInfo('cloudflare.svg', "Cloudflare"));
-                    }
-                    else if (server.includes('Debian')) {
+                    } else if (server.includes('Debian')) {
                         $('#serverinfos').append(serverInfo('debian.svg', "Debian"));
                     } else if (server.includes('AppleHttpServer')) {
                         $('#serverinfos').append(serverInfo('AppleServer.svg', "Apple HTTP Server"));
@@ -143,6 +139,7 @@ jQuery(function ($) {
         });
     });
 });
+
 function serverInfo(img, text, version) {
     if (!img) {
         img = "placeholder.svg";
@@ -161,6 +158,7 @@ $('#optionspage').click(function () {
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
     $('body').html('');
 });
+
 function getServerInfo(hostname, _callback) {
     var geturl;
     geturl = jQuery.ajax({
@@ -183,6 +181,7 @@ function getServerInfo(hostname, _callback) {
         }
     });
 }
+
 function getInfo(hostname, _callback) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
@@ -190,9 +189,10 @@ function getInfo(hostname, _callback) {
             typeof _callback === "function" ? _callback(this.responseText) : "";
         }
     };
-    xhttp.open("GET", "https://wp-plugins.nick.s911.hqgmbh.eu/ping.php?h=" + hostname, true);
+    xhttp.open("GET", "https://api.ntk-music.de/ping.php?h=" + hostname, true);
     xhttp.send();
 }
+
 function getPassword(password, _callback) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
@@ -200,9 +200,10 @@ function getPassword(password, _callback) {
             typeof _callback === "function" ? _callback(this.responseText) : "";
         }
     };
-    xhttp.open("GET", "https://wp-plugins.nick.s911.hqgmbh.eu/password.php?p=" + password, true);
+    xhttp.open("GET", "https://api.ntk-music.de/password.php?p=" + password, true);
     xhttp.send();
 }
+
 function validURL(str) {
     var pattern = new RegExp('^(http(s)?:\\/\\/)?' + // protocol
         '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
@@ -213,6 +214,7 @@ function validURL(str) {
     if (str.includes('localhost')) return true;
     return !!pattern.test(str);
 }
+
 function password_generator(len) {
     var length = (len) ? (len) : (10);
     var string = "abcdefghijklmnopqrstuvwxyz"; //to upper 
